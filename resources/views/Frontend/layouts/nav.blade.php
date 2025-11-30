@@ -35,8 +35,15 @@
                                  <a class="nav-link" href="blog.html">Blog</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="contact.html">Contact Us</a>
+                                 <a class="nav-link" href="contact.html">Contact</a>
                               </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="/login">Sign in</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="/register">Sign Up</a>
+                              </li>
+                              
                            </ul>
                         </div>
                      </nav>
