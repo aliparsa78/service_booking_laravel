@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,7 +22,16 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard',[UserController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
-
+// All visitors
+Route::view('/about','Frontend/about');
+Route::view('/rooms','Frontend/room');
+Route::view('/gallery','Frontend/gallery');
+Route::view('/blog','Frontend/blog');
+Route::view('/contact','Frontend/contact');
+// Customer logged in
+Route::middleware(['auth','customer'])->group(function(){
+    Route::get('/customer',[CustomerController::class,'index']);
+});
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

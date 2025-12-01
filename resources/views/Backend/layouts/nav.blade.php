@@ -1,3 +1,11 @@
+<style>
+  .log_out{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    text-color: #ffffff !important;
+  }
+</style>
 <nav class="navbar p-0 fixed-top d-flex flex-row">
           <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
             <a class="navbar-brand brand-logo-mini" href="index.html"><img src="backend/assets/images/logo-mini.svg" alt="logo" /></a>
@@ -140,7 +148,7 @@
                       
                        <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <input type="submit" value="Log out">
+                            <input type="submit" value="Log out" class="log_out text-white">
                         </form>
                     </div>
                   </a>

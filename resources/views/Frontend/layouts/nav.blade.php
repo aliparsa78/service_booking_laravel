@@ -1,4 +1,12 @@
-
+<style>
+  .log_out{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    text-color: #ccc;
+    cursor: pointer;
+  }
+</style>
          <!-- header inner -->
          <div class="header">
             <div class="container">
@@ -20,29 +28,45 @@
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                            <ul class="navbar-nav mr-auto">
                               <li class="nav-item active">
-                                 <a class="nav-link" href="index.html">Home</a>
+                                 <a class="nav-link" href="/">Home</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="about.html">About</a>
+                                 <a class="nav-link" href="about">About</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="room.html">Our room</a>
+                                 <a class="nav-link" href="rooms">rooms</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="gallery.html">Gallery</a>
+                                 <a class="nav-link" href="gallery">Gallery</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="blog.html">Blog</a>
+                                 <a class="nav-link" href="blog">Blog</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="contact.html">Contact</a>
+                                 <a class="nav-link" href="contact">Contact</a>
                               </li>
+                              @auth
+                              <li class="nav-item">
+                                 <a class="nav-link" href="order">Orders</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="acount">Acount</a>
+                              </li>
+                              <li class="nav-item">
+                                 <form method="POST" class="nav-link" action="{{ route('logout') }}">
+                                    @csrf
+                                    <input type="submit" value="Log out" class="log_out">
+                                 </form>
+                              </li>
+                              @else
                               <li class="nav-item">
                                  <a class="nav-link" href="/login">Sign in</a>
                               </li>
                               <li class="nav-item">
                                  <a class="nav-link" href="/register">Sign Up</a>
                               </li>
+                              @endif
+                             
                               
                            </ul>
                         </div>
