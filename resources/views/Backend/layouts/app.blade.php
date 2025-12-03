@@ -42,6 +42,7 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="backend/assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
@@ -61,5 +62,24 @@
     <!-- Custom js for this page -->
     <script src="backend/assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
+    @include('sweetalert::alert')
+    @if(session('success'))
+      <script>
+      Swal.fire({
+        title:'success',
+        text:'{{session("success")}}',
+        icon: 'success',
+      })
+    </script>
+    @endif
+    @if(session('danger'))
+      <script>
+        Swal.fire({
+          title:'danger',
+          text:'{{session("danger")}}',
+          icon:'error'
+        })
+      </script>
+      @endif
   </body>
 </html>

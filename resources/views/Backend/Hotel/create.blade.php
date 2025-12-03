@@ -29,7 +29,15 @@
               <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
+                  
                     <h4 class="card-title text-center">Basic form elements for Hotel</h4>
+ 
+                    @if($errors->any())
+                      @foreach($errors->all() as $error)
+                        <p class="text-danger text-center">{{$error}}</p>
+                      @endforeach
+                    @endif
+
                     <form class="forms-sample" action="{{route('hotel.store')}}" method="post" enctype="multipart/form-data">
                       @csrf
                       <div class="form-group">

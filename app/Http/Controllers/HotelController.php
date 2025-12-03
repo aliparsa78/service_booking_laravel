@@ -29,6 +29,12 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name'=>'required',
+            'address'=>'required',
+            'profile'=>'required|mimes:jpg,png|max:5048',
+            'description'=>'required'
+        ]);
         $hotel = new Hotel();
         $hotel->name = $request->name;
         $hotel->address = $request->address;
@@ -40,7 +46,7 @@ class HotelController extends Controller
             $hotel->profile = $profile;
         }
         $hotel->save();
-        return redirect('/dashboard');
+        return redirect('/hotel')->with('success','Hotel information added successfuly');
     }
 
     /**
@@ -76,7 +82,7 @@ class HotelController extends Controller
             $hotel->profile = $profile;
         }
         $hotel->update();
-        return redirect('/hotel')->with('success','Hotel information updated successfuly.');
+        return redirect('/hotel')->with('danger','Hotel information updated successfuly.');
         
     }
 
