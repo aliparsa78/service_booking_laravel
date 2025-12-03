@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\HotelController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -31,6 +32,11 @@ Route::view('/contact','Frontend/contact');
 // Customer logged in
 Route::middleware(['auth','customer'])->group(function(){
     Route::get('/customer',[CustomerController::class,'index']);
+});
+
+// Admin Logged in
+Route::middleware(['auth','admin'])->group(function(){
+    Route::resource('/hotel',HotelController::class);
 });
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
