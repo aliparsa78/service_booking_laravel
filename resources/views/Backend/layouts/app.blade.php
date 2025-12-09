@@ -31,8 +31,9 @@
         <!-- partial:partials/_navbar.html -->
         @include('Backend/layouts/nav')
         <!-- partial -->
-          @yield('content')
-          <!-- content-wrapper ends -->
+        <!-- content-wrapper ends -->
+        @yield('content')
+         
           <!-- partial:partials/_footer.html -->
           @include('Backend/layouts/footer')
           <!-- partial -->

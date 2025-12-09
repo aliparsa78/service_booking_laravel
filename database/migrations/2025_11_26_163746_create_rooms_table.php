@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('hotel_id');
             $table->foreign('hotel_id')->references('id')->on('hotels');
+            $table->string('image');
             $table->string('type');
             $table->integer('price');
             $table->integer('capacity');
             $table->string('description');
-            $table->boolean('is_active')->default(1);
+            $table->char('is_active',16)->default(off);
             $table->timestamps();
         });
     }

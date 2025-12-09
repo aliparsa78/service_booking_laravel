@@ -27,27 +27,27 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                            <ul class="navbar-nav mr-auto">
-                              <li class="nav-item active">
+                              <li class="nav-item {{request()->is('/') ? 'active' : ''}}">
                                  <a class="nav-link" href="/">Home</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="about">About</a>
+                                 <a class="nav-link {{request()->is('about*') ? 'active' : ''}}" href="about">About</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="rooms">rooms</a>
+                                 <a class="nav-link {{request()->is('rooms*') ? 'active' : ''}}" href="rooms">rooms</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="gallery">Gallery</a>
+                                 <a class="nav-link  {{request()->is('gallery*') ? 'active' : ''}}" href="gallery">Gallery</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="blog">Blog</a>
+                                 <a class="nav-link {{request()->is('blog*') ? 'active' : ''}}" href="blog">Blog</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="contact">Contact</a>
+                                 <a class="nav-link  {{request()->is('contact*') ? 'active' : ''}}" href="contact">Contact</a>
                               </li>
                               @auth
                               <li class="nav-item">
-                                 <a class="nav-link" href="order">Orders</a>
+                                 <a class="nav-link {{request()->is('order*') ? 'active' : ''}}" href="order">Orders</a>
                               </li>
                               <li class="nav-item">
                                  <a class="nav-link" href="acount">Acount</a>

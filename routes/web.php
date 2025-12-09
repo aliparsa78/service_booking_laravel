@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HotelController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -18,13 +20,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('Frontend.index');
-});
+Route::get('/',[CustomerController::class,'index']);
 
 Route::get('/dashboard',[UserController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
 // All visitors
-Route::view('/about','Frontend/about');
+Route::get('/about',[HomeController::class,'about']);
 Route::view('/rooms','Frontend/room');
 Route::view('/gallery','Frontend/gallery');
 Route::view('/blog','Frontend/blog');
@@ -37,6 +37,7 @@ Route::middleware(['auth','customer'])->group(function(){
 // Admin Logged in
 Route::middleware(['auth','admin'])->group(function(){
     Route::resource('/hotel',HotelController::class);
+    Route::resource('/room',RoomController::class);
 });
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
