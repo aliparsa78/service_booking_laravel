@@ -38,17 +38,18 @@
                   <div class="col-md-5">
                      <div class="book_room">
                         <h1>Book a Room Online</h1>
-                        <form class="book_now">
+                        <form class="book_now" action="book_now" method="post">
+                           @csrf
                            <div class="row">
                               <div class="col-md-12">
                                  <span>Arrival</span>
                                  <img class="date_cua" src="images/date.png">
-                                 <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="dd/mm/yyyy">
+                                 <input type="date" class="online_book" placeholder="dd/mm/yyyy"  name="arrival">
                               </div>
                               <div class="col-md-12">
                                  <span>Departure</span>
                                  <img class="date_cua" src="images/date.png">
-                                 <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="dd/mm/yyyy">
+                                 <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="departure">
                               </div>
                               <div class="col-md-12">
                                  <button class="book_btn">Book Now</button>
@@ -69,13 +70,13 @@
                <div class="col-md-5">
                   <div class="titlepage">
                      <h2>About Us</h2>
-                     <p>The passage experienced a surge in popularity during the 1960s when Letraset used it on their dry-transfer sheets, and again during the 90s as desktop publishers bundled the text with their software. Today it's seen all around the web; on templates, websites, and stock designs. Use our generator to get your own, or read on for the authoritative history of lorem ipsum. </p>
+                     <p>{{$about->description}} </p>
                      <a class="read_more" href="Javascript:void(0)"> Read More</a>
                   </div>
                </div>
                <div class="col-md-7">
                   <div class="about_img">
-                     <figure><img src="images/about.png" alt="#"/></figure>
+                     <figure><img src="{{asset('images/hotel/'.$about->profile)}}" alt="#"/></figure>
                   </div>
                </div>
             </div>

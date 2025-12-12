@@ -25,13 +25,17 @@ Route::get('/',[CustomerController::class,'index']);
 Route::get('/dashboard',[UserController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
 // All visitors
 Route::get('/about',[HomeController::class,'about']);
-Route::view('/rooms','Frontend/room');
+Route::get('/rooms',[HomeController::class,'rooms']);
 Route::view('/gallery','Frontend/gallery');
 Route::view('/blog','Frontend/blog');
 Route::view('/contact','Frontend/contact');
 // Customer logged in
 Route::middleware(['auth','customer'])->group(function(){
     Route::get('/customer',[CustomerController::class,'index']);
+    // Booking
+    Route::post('/book_now',[CustomerController::class,'book_now']);
+    Route::get('/book/{id}',[CustomerController::class,'book']);
+    Route::post('/submit_book',[CustomerController::class,'submit_book']);
 });
 
 // Admin Logged in

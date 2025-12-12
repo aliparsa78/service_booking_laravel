@@ -57,5 +57,24 @@
       <!-- sidebar -->
       <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="js/custom.js"></script>
+      @include('sweetalert::alert')
+    @if(session('success'))
+      <script>
+      Swal.fire({
+        title:'success',
+        text:'{{session("success")}}',
+        icon: 'success',
+      })
+    </script>
+    @endif
+    @if(session('danger'))
+      <script>
+        Swal.fire({
+          title:'danger',
+          text:'{{session("danger")}}',
+          icon:'error'
+        })
+      </script>
+      @endif
    </body>
 </html>
