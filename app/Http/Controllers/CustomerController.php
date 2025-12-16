@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Room;
 use App\Models\Hotel;
 use App\Models\Booking;
+use App\Models\User;
 use Auth;
 
 class CustomerController extends Controller
@@ -16,6 +17,14 @@ class CustomerController extends Controller
         $rooms = Room::get();
         return view('Frontend/index',compact('rooms','about'));
     }
+
+    public function acount(Request $request)
+    {
+        $user = Auth::user();
+        $Bookings = Booking::where('user_id',$user->id)->get();
+        return view('Frontend/Acount/index',compact('user','Bookings'));
+    }
+
     public function book_now(Request $request)
     {
         $data = $request->only(['arrival','departure']);
@@ -51,5 +60,27 @@ class CustomerController extends Controller
         session()->forget('temp_date');
         
         return redirect('/')->with('success','Booking registered successfuly ');
+    }
+
+    public function edit_booking(Request $request, $id){
+        $book = Booking::find($id);
+        return view('Frontend/Book/edit',compact('book'));
+    }
+    public function update_book(Request $request, $id)
+    {
+        $book = Booking::find($id);
+        $book->check_in = $request->check_in;
+        $book->check_out = $request->check_out;
+        $book->update();
+        return redirect('/acount')->with('success','Booking Date updated successfuly ');
+    }
+    public function delete_book($id)
+    {
+        if(Auth::check())
+        {
+            $book = Booking::find($id);
+            $book->delete();
+            return back()->with('danger','Booking information deleted');
+        }
     }
 }

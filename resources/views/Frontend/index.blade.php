@@ -97,6 +97,7 @@
             <div class="row">
                @foreach($rooms as $room)
                <div class="col-md-4 col-sm-6">
+                  <a href="book/{{$room->id}}" id="serv_hover"  class="room">
                   <div id="serv_hover"  class="room">
                      <div class="room_img">
                         <figure><img src="{{asset('images/rooms/'.$room->image)}}" alt="#"/></figure>
@@ -106,6 +107,7 @@
                         <p> {{$room->description}} </p>
                      </div>
                   </div>
+               </a>
                </div>
                @endforeach
                

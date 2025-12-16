@@ -36,6 +36,11 @@ Route::middleware(['auth','customer'])->group(function(){
     Route::post('/book_now',[CustomerController::class,'book_now']);
     Route::get('/book/{id}',[CustomerController::class,'book']);
     Route::post('/submit_book',[CustomerController::class,'submit_book']);
+    // My Account
+    Route::get('acount',[CustomerController::class,'acount']);
+    Route::get('edit_booking/{id}',[CustomerController::class,'edit_booking']);
+    Route::post('update_book/{id}',[CustomerController::class,'update_book']);
+    Route::post('/delete_book/{id}',[CustomerController::class,'delete_book']);
 });
 
 // Admin Logged in
