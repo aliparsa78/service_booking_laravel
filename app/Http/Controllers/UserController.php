@@ -14,7 +14,7 @@ class UserController extends Controller
             return redirect('/customer');
         }elseif($user->role === 'admin')
         {
-            return view('Backend/index');
+            return redirect('/admin');
         }
     }
 }

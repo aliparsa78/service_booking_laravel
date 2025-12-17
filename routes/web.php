@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -47,7 +48,11 @@ Route::middleware(['auth','customer'])->group(function(){
 Route::middleware(['auth','admin'])->group(function(){
     Route::resource('/hotel',HotelController::class);
     Route::resource('/room',RoomController::class);
+    Route::get('/admin',[AdminController::class,'index']);
+    Route::post('approve_book/{id}',[AdminController::class,'approve']);
 });
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
