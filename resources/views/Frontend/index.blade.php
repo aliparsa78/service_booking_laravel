@@ -70,13 +70,13 @@
                <div class="col-md-5">
                   <div class="titlepage">
                      <h2>About Us</h2>
-                     <p>{{$about->description}} </p>
+                     <p>{{ optional($about)->description}} </p>
                      <a class="read_more" href="Javascript:void(0)"> Read More</a>
                   </div>
                </div>
                <div class="col-md-7">
                   <div class="about_img">
-                     <figure><img src="{{asset('images/hotel/'.$about->profile)}}" alt="#"/></figure>
+                     <figure><img src="{{asset('images/hotel/'.optional($about)->profile)}}" alt="#"/></figure>
                   </div>
                </div>
             </div>

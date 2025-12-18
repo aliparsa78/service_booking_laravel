@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('price');
             $table->integer('capacity');
             $table->string('description');
-            $table->char('is_active',16)->default(off);
+            $table->char('is_active',16)->default('off');
             $table->timestamps();
         });
     }

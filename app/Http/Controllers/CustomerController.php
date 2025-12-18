@@ -14,7 +14,7 @@ class CustomerController extends Controller
     public function index(Request $request)
     {
         $about = Hotel::get()->first();
-        $rooms = Room::get();
+        $rooms = Room::all();
         return view('Frontend/index',compact('rooms','about'));
     }
 
@@ -59,7 +59,7 @@ class CustomerController extends Controller
         session()->forget('temp_book');
         session()->forget('temp_date');
         
-        return redirect('/')->with('success','Booking registered successfuly ');
+        return redirect('acount')->with('success','Booking registered successfuly ');
     }
 
     public function edit_booking(Request $request, $id){

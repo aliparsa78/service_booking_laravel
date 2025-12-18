@@ -33,6 +33,7 @@ return new class extends Migration
             ])->default('pending');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('room_id')->references('id')->on('rooms');
+             $table->softDeletes();
             $table->timestamps();
         });
     }

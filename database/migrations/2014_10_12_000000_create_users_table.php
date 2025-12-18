@@ -21,6 +21,7 @@ return new class extends Migration
             $table->char('role',16)->default('customer');
             $table->string('profile_photo')->nullable(); 
             $table->rememberToken();
+           
             $table->timestamps();
         });
     }

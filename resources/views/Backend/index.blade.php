@@ -104,8 +104,9 @@
               <div class="col-12 grid-margin">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Booking Status</h4>
+                    <h4 class="card-title">Reservation Status</h4>
                     <div class="table-responsive">
+                      <h6>This table content information up to 1 week</h6>
                       <table class="table">
                         <thead>
                           <tr>
@@ -116,7 +117,7 @@
                             <th> Room No </th>
                             <th> Start Date </th>
                             <th> End Date </th>
-                            <th> Booking Status </th>
+                            <th> Reserve Status </th>
                             <th>Approve</th>
                           </tr>
                         </thead>
@@ -135,6 +136,9 @@
                             <td> {{$book->check_out}} </td>
                             <td class="{{$book->status=='pending' ? 'text-danger':($book->status=='confirmed' ? 'text-info':'') }}">{{$book->status}}</td>
                             <td>
+                              @if($book->status == 'confirmed')
+                                <p class="text-danger">Confirmed</p>
+                              @else
                               <div class="badge badge-outline-success">
                                 <form action="approve_book/{{$book->id}}" method="post">
                                   @csrf
@@ -142,6 +146,7 @@
                                     <input type="submit" value="Approve" class="btn btn-success">
                                 </form>
                               </div>
+                              @endif
                             </td>
                           </tr>
                           @endforeach
