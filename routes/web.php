@@ -50,6 +50,7 @@ Route::middleware(['auth','admin'])->group(function(){
     Route::resource('/room',RoomController::class);
     Route::get('/admin',[AdminController::class,'index']);
     Route::post('approve_book/{id}',[AdminController::class,'approve']);
+    Route::get('/reservations',[AdminController::class,'reservations']);
 });
 
 

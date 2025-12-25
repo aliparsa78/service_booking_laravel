@@ -108,6 +108,7 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/hotel">Hotel</a></li>
                 <li class="nav-item"> <a class="nav-link" href="/room">Rooms</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/reservations">All Reservations</a></li>
                 <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
               </ul>
             </div>

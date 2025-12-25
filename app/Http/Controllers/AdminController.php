@@ -27,4 +27,12 @@ class AdminController extends Controller
         $book->update();
         return back()->with('success','Information has been updated successfuly !');
     }
+
+    public function reservations(Request $request)
+    {
+        $books = Booking::all();
+        $total_earn = BooKing::where('status','confirmed')->sum('total_price');
+
+        return view('Backend/Reservations/index',compact('books','total_earn'));
+    }
 }
