@@ -98,7 +98,8 @@
                 </div>
               </div>
             </div>
-           
+
+            
            
             <div class="row ">
               <div class="col-12 grid-margin">
@@ -117,8 +118,8 @@
                             <th> Room No </th>
                             <th> Start Date </th>
                             <th> End Date </th>
-                            <th> Reserve Status </th>
-                            <th>Approve</th>
+                            <th>Status / Confirming</th>
+                            <th> Cancell </th>
                           </tr>
                         </thead>
                         <tbody>
@@ -134,10 +135,9 @@
                             <td> {{$book->room_id}} </td>
                             <td> {{$book->check_in}} </td>
                             <td> {{$book->check_out}} </td>
-                            <td class="{{$book->status=='pending' ? 'text-danger':($book->status=='confirmed' ? 'text-info':'') }}">{{$book->status}}</td>
                             <td>
                               @if($book->status == 'confirmed')
-                                <p class="text-danger">Confirmed</p>
+                                <p class="text-success">Confirmed</p>
                               @else
                               <div class="badge badge-outline-success">
                                 <form action="approve_book/{{$book->id}}" method="post">
@@ -145,6 +145,25 @@
                                     <input type="hidden" value="confirmed" name="status">
                                     <input type="submit" value="Approve" class="btn btn-success">
                                 </form>
+                              </div>
+                              
+                              @endif
+                            </td>
+                            <td>
+                              @if($book->status == 'confirmed')
+                                <p class="text-success">Confirmed</p>
+                              @else
+                              <div class="badge badge-outline-danger">
+                                <form id="cancel_book-{{ $book->id }}" 
+                                  action="decline/{{$book->id}}" 
+                                  method="POST">
+                                    @csrf
+                                    <input type="hidden" value="cancelled" name="status">
+
+                                <button type="button" class="btn btn-danger" onclick="confirmDelete({{ $book->id }})">
+                                    Delete
+                                </button>
+                            </form>
                               </div>
                               @endif
                             </td>
@@ -357,6 +376,26 @@
       <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
+
    
+
+   <script>
+function confirmDelete(id) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "This action cannot be undone!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'Cancel'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('cancel_book-' + id).submit();
+        }
+    });
+}
+</script>
   </body>
 </html>

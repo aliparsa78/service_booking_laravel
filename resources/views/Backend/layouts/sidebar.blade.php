@@ -12,8 +12,8 @@
                   <span class="count bg-success"></span>
                 </div>
                 <div class="profile-name">
-                  <h5 class="mb-0 font-weight-normal">Henry Klein</h5>
-                  <span>Gold Member</span>
+                  <h5 class="mb-0 font-weight-normal"> {{Auth::user()->name}} {{Auth::user()->lastname}} </h5>
+                  <span>{{Auth::user()->role}}</span>
                 </div>
               </div>
               <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
@@ -108,19 +108,17 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/hotel">Hotel</a></li>
                 <li class="nav-item"> <a class="nav-link" href="/room">Rooms</a></li>
-                <li class="nav-item"> <a class="nav-link" href="/reservations">All Reservations</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
               </ul>
             </div>
           </li>
           
           
           <li class="nav-item menu-items">
-            <a class="nav-link" href="pages/charts/chartjs.html">
+            <a class="nav-link" href="/reservations">
               <span class="menu-icon">
                 <i class="mdi mdi-chart-bar"></i>
               </span>
-              <span class="menu-title">Charts</span>
+              <span class="menu-title">Order Status</span>
             </a>
           </li>
           <li class="nav-item menu-items">

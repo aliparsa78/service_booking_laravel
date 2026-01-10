@@ -80,7 +80,7 @@
                               <input  class="contactus" value="{{session('temp_book.total_price')}}"    name="price" readonly> 
                             </div>
                             <div class="col-md-12">
-                            <button class="send_btn">Send</button>
+                            <button class="send_btn">Book Now</button>
                             </div>
                         </div>
                     </form>

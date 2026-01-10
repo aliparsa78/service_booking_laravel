@@ -22,7 +22,8 @@ class CustomerController extends Controller
     {
         $user = Auth::user();
         $Bookings = Booking::where('user_id',$user->id)->get();
-        return view('Frontend/Acount/index',compact('user','Bookings'));
+        $count = Booking::where('user_id',$user->id)->count();
+        return view('Frontend/Acount/index',compact('user','Bookings','count'));
     }
 
     public function book_now(Request $request)
@@ -44,6 +45,8 @@ class CustomerController extends Controller
         $book->check_out = $departure;
         $book->total_price = $room->price;
          session(['temp_book'=>$book]);
+
+        
         return view('Frontend/Book/index');
     }
     public function submit_book(Request $request)
