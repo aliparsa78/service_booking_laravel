@@ -140,10 +140,10 @@
                                 <p class="text-success">Confirmed</p>
                               @else
                               <div class="badge badge-outline-success">
-                                <form action="approve_book/{{$book->id}}" method="post">
+                                <form action="approve_book/{{$book->id}}" method="post" id="approve_booking{{$book->id}}">
                                   @csrf
                                     <input type="hidden" value="confirmed" name="status">
-                                    <input type="submit" value="Approve" class="btn btn-success">
+                                    <input type="button" value="Approve" class="btn btn-success" onclick="approve_book({{$book->id}})">
                                 </form>
                               </div>
                               
@@ -380,15 +380,36 @@
    
 
    <script>
+    function approve_book(id)
+    {
+    
+      Swal.fire({
+        title: 'Are you sure?',
+        text: '',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Approve',
+        cancelButtonText: 'Cancel',
+      }).then((result)=>{
+        if(result.isConfirmed){
+          document.getElementById('approve_booking'+id).submit();
+        }
+      });
+    }
+
+
+
+
 function confirmDelete(id) {
     Swal.fire({
         title: 'Are you sure?',
+        titleColor: '#d33',
         text: "This action cannot be undone!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d33',
         cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Yes, delete it!',
+        confirmButtonText: 'Yes, decline it!',
         cancelButtonText: 'Cancel'
     }).then((result) => {
         if (result.isConfirmed) {

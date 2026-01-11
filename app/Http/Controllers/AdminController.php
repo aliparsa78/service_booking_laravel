@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Booking;
+use App\Models\Reject_Booking;
 use Auth;
 use Carbon\Carbon;
 
@@ -34,7 +35,10 @@ class AdminController extends Controller
         $book = Booking::find($id);
         $book->status = $request->status;
         $book->update();
-        return back()->with('success','Information has been updated successfuly !');
+        // return $book;
+        $reject = new Reject_Booking();
+        return view('Backend/Reservations/reject',compact('book'));
+        // return back()->with('success','Information has been updated successfuly !');
     }
 
     public function reservations(Request $request)
