@@ -15,8 +15,10 @@
     <link rel="stylesheet" href="backend/assets/vendors/owl-carousel-2/owl.carousel.min.css">
     <link rel="stylesheet" href="backend/assets/vendors/owl-carousel-2/owl.theme.default.min.css">
     <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <!-- endinject -->
+    <!-- Bootstrap 5.3 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+
     <!-- Layout styles -->
     <link rel="stylesheet" href="backend/assets/css/style.css">
     <!-- End layout styles -->
@@ -43,6 +45,9 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="backend/assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

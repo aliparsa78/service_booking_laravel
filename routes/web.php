@@ -23,7 +23,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[CustomerController::class,'index']);
-Route::post("/notification",[NotificationController::class,'index']);
 
 Route::get('/dashboard',[UserController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
 // All visitors
@@ -54,6 +53,10 @@ Route::middleware(['auth','admin'])->group(function(){
     Route::post('approve_book/{id}',[AdminController::class,'approve']);
     Route::post('/decline/{id}',[AdminController::class,'decline_book']);
     Route::get('/reservations',[AdminController::class,'reservations']);
+    Route::post("/notification",[NotificationController::class,'index']);
+    // Reservation's date
+    Route::get('/week_reservation',[AdminController::class,'week_reservation']);
+    Route::get('/month_reservation',[AdminController::class,'month_reservation']);
 });
 
 

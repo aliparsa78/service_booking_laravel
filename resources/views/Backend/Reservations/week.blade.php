@@ -25,14 +25,15 @@
                 </ol>
               </nav>
             </div>
+            <hr>
             <div class="row">           
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Today's Reservations</h4>
-                    <div class="table-responsive">
+                    <h4 class="card-title">Reservations Table From Last Week</h4>
                      <x-reservation-filter />             
-                      <table class="table table-striped table-resposive table-dark">
+
+                      <table class="table table-striped table-dark">
                         <thead>
                           <tr>
                             <th>#</th>
@@ -46,23 +47,21 @@
                         </thead>
                         <tbody>
                             @php $id=1; @endphp
-                        @foreach($Day_orders as $today_order)
+                        @foreach($week_reservations as $book)
                           <tr>
                               <td>{{$id++}}</td>
-                              <td>{{$today_order->user->name}}</td>
-                              <td>{{$today_order->room->type}}</td>
-                              <td>{{$today_order->status}}</td>
-                              <td>{{$today_order->check_in}}</td>
-                              <td>{{$today_order->check_out}}</td>
-                              <td>{{$today_order->total_price}}</td>
+                              <td>{{$book->user->name}}</td>
+                              <td>{{$book->room->type}}</td>
+                              <td>{{$book->status}}</td>
+                              <td>{{$book->check_in}}</td>
+                              <td>{{$book->check_out}}</td>
+                              <td>{{$book->total_price}}</td>
                             </tr>
                             @endforeach
-
                         </tbody>
-
                     </table>
                     <br>
-                    <h5 class="text-center">Total amount of earn: ( {{$dayTotal}} $ )</h5>
+                    <h5 class="text-center">Total amount of earn: ( {{$week_total}} $ )</h5>
                     </div>
                   </div>
                 </div>

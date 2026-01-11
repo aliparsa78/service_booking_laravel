@@ -17,7 +17,7 @@ class AdminController extends Controller
         $user = Auth::user();
         if(Auth::check() && $user->role ==='admin')
             {
-                $books = Booking::get();
+                $books = Booking::where('status','pending')->get();
                 
                 return view('Backend/index',compact('books'));
             }   
@@ -48,5 +48,18 @@ class AdminController extends Controller
         $monthTotal = BooKing::where('status','confirmed')->whereMonth('created_at',now()->month())->sum('total_price');
         $dayTotal = BooKing::where('status','confirmed')->whereDate('created_at',today())->sum('total_price');
         return view('Backend/Reservations/index',compact('Month_orders','Day_orders','monthTotal','dayTotal'));
+    }
+    public function  week_reservation(Request $request)
+    {
+        $week_reservations = Booking::where('created_at','>=',Carbon::now()->subWeek())->get();
+        $week_total = Booking::where('status','confirmed')->where('created_at','>=',Carbon::now()->subWeek())->sum('total_price');
+        return view('Backend/Reservations/week',compact('week_reservations','week_total'));
+
+    }
+    public function month_reservation()
+    {
+        $month_reservations = Booking::where('created_at','>=',Carbon::now()->subMonth())->get();
+        $month_total = Booking::where('status','confirmed')->where('created_at','>=',Carbon::now()->subMonth())->sum('total_price');
+        return view('Backend/Reservations/month',compact('month_reservations','month_total'));
     }
 }
