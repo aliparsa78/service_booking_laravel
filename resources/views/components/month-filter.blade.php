@@ -1,4 +1,5 @@
 <div>
+    <div>
     <div class="dropdown text-left">
       <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         Tables Of Reservations
@@ -11,4 +12,5 @@
     </div> 
     
     <hr>
+</div>
 </div>

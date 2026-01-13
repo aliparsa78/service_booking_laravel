@@ -155,7 +155,7 @@
                               @else
                               <div class="badge badge-outline-danger">
                                 <form id="cancel_book-{{ $book->id }}" 
-                                  action="decline/{{$book->id}}" 
+                                  action="reject/{{$book->id}}" 
                                   method="POST">
                                     @csrf
                                     <input type="hidden" value="cancelled" name="status">
@@ -396,10 +396,6 @@
         }
       });
     }
-
-
-
-
 function confirmDelete(id) {
     Swal.fire({
         title: 'Are you sure?',

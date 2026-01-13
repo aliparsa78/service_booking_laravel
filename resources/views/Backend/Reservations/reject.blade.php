@@ -44,11 +44,12 @@
                       </h5>
                     </div>
                     <div class="card-body">
-                      <form action="notification" method="post">
+                      <form action="accept_reject" method="post">
                         @csrf
+                        <input type="hidden" name="book_id" value="{{$book->id}}">
                         <label for="">Reason For Rejection</label>
                         <textarea name="message" id="" class="form-control" Required></textarea>
-                        <input type="submit" class="btn btn-info" value="send">
+                        <input type="submit" class="btn btn-info" value="Reject Booking">
                       </form>
                     </div>
                   </div>                    

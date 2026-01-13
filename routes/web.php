@@ -51,12 +51,14 @@ Route::middleware(['auth','admin'])->group(function(){
     Route::resource('/room',RoomController::class);
     Route::get('/admin',[AdminController::class,'index']);
     Route::post('approve_book/{id}',[AdminController::class,'approve']);
-    Route::post('/decline/{id}',[AdminController::class,'decline_book']);
+    Route::post('/reject/{id}',[AdminController::class,'rejected_book']);
     Route::get('/reservations',[AdminController::class,'reservations']);
-    Route::post("/notification",[NotificationController::class,'index']);
+    Route::post("/accept_reject",[AdminController::class,'accept_reject']);
     // Reservation's date
     Route::get('/week_reservation',[AdminController::class,'week_reservation']);
     Route::get('/month_reservation',[AdminController::class,'month_reservation']);
+    // Rejected reservations
+    Route::get('/rejected_reservation',[AdminController::class,'rejected_reservations']);
 });
 
 
