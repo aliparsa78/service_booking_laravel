@@ -69,6 +69,8 @@ class AdminController extends Controller
         return view('Backend/Reservations/index',compact('Month_orders','Day_orders','monthTotal','dayTotal'));
     }
 
+    
+
     public function  week_reservation(Request $request)
     {
         $week_reservations = Booking::where('created_at','>=',Carbon::now()->subWeek())->get();

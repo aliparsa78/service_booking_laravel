@@ -9,7 +9,7 @@
     <base href="../public">
   </head>
   <body>
-        <!-- partial -->
+    @extends('Backend/layouts/app')     <!-- partial -->
         @section('content')
     
         <!-- partial -->
@@ -20,19 +20,21 @@
 
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Tables / </a></li>
-                  <x-breadcrumn-component />
+                  <li class="breadcrumb-item"><a href="#">Tables</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Booking tables</li>
                 </ol>
               </nav>
             </div>
+            <hr>
             <div class="row">           
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Today's Reservations</h4>
+                    <h4 class="card-title">Reservations Table From Last Month</h4>
                     <div class="table-responsive">
-                     <x-reservation-filter />             
-                      <table class="table table-striped table-resposive table-dark">
+                      <x-reservation-filter />             
+
+                      <table class="table table-striped table-dark">
                         <thead>
                           <tr>
                             <th>#</th>
@@ -46,23 +48,21 @@
                         </thead>
                         <tbody>
                             @php $id=1; @endphp
-                        @foreach($Day_orders as $today_order)
+                        @foreach($month_reservations as $book)
                           <tr>
                               <td>{{$id++}}</td>
-                              <td>{{$today_order->user->name}}</td>
-                              <td>{{$today_order->room->type}}</td>
-                              <td>{{$today_order->status}}</td>
-                              <td>{{$today_order->check_in}}</td>
-                              <td>{{$today_order->check_out}}</td>
-                              <td>{{$today_order->total_price}}</td>
+                              <td>{{$book->user->name}}</td>
+                              <td>{{$book->room->type}}</td>
+                              <td>{{$book->status}}</td>
+                              <td>{{$book->check_in}}</td>
+                              <td>{{$book->check_out}}</td>
+                              <td>{{$book->total_price}}</td>
                             </tr>
                             @endforeach
-
                         </tbody>
-
                     </table>
                     <br>
-                    <h5 class="text-center text-white">Total amount of earn: ( {{$dayTotal}} $ )</h5>
+                    <h3 class="text-center text-success fw-bold">Total amount of earn in this month: ( {{$month_total}} $ )</h3>
                     </div>
                   </div>
                 </div>

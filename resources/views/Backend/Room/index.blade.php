@@ -34,7 +34,7 @@
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="#">Tables</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Hotel tables</li>
+                  <x-breadcrumn-component />
                 </ol>
               </nav>
             </div>

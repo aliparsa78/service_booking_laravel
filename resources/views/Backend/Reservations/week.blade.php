@@ -21,7 +21,8 @@
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="#">Tables</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Booking tables</li>
+                    <x-breadcrumn-component />
+
                 </ol>
               </nav>
             </div>
@@ -61,7 +62,7 @@
                         </tbody>
                     </table>
                     <br>
-                    <h5 class="text-center">Total amount of earn: ( {{$week_total}} $ )</h5>
+                    <h5 class="text-center text-white">Total amount of earn: ( {{$week_total}} $ )</h5>
                     </div>
                   </div>
                 </div>

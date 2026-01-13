@@ -107,8 +107,8 @@
                   <div class="card-body">
                     <h4 class="card-title">Reservation Status</h4>
                     <div class="table-responsive">
-                      <h6>This table content information up to 1 week</h6>
-                      <table class="table">
+                      <h6 class="text-white fw-bold">This table content information up to 1 week</h6>
+                      <table class="table table-stripped table-dark">
                         <thead>
                           <tr>
                             <th>#</th>

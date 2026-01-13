@@ -19,8 +19,9 @@
               <h3 class="page-title"> Form elements </h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Forms</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Form elements</li>
+                  <li class="breadcrumb-item"><a href="#">Table / </a></li>
+                    <x-breadcrumn-component />
+
                 </ol>
               </nav>
             </div>
@@ -35,7 +36,7 @@
                     @endforeach
                   @endif
                   <div class="card">
-                    <div class="card-header">
+                    <div class="card-header text-white">
                       <h3>Room: {{$book->room->type}}</h3>
                       <h5>Capacity: {{$book->room->capacity}} Person/s</h5>
                       <h5>Total_Price: {{$book->total_price}} $</h5>
@@ -47,8 +48,9 @@
                       <form action="accept_reject" method="post">
                         @csrf
                         <input type="hidden" name="book_id" value="{{$book->id}}">
-                        <label for="">Reason For Rejection</label>
-                        <textarea name="message" id="" class="form-control" Required></textarea>
+                        <label for="" class="text-white">Reason For Rejection</label>
+                        <textarea name="message" id="" class="form-control text-white" placeholder="Enter the message" Required></textarea>
+                        <br>
                         <input type="submit" class="btn btn-info" value="Reject Booking">
                       </form>
                     </div>
