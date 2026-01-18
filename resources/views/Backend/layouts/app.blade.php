@@ -72,10 +72,11 @@
     @if(session('success'))
       <script>
       Swal.fire({
-        title:'success',
+        title: '<span style="color:black;">Are You Sure?</span>',
         text:'{{session("success")}}',
         icon: 'success',
-      })
+        color:'#000'
+      });
     </script>
     @endif
     @if(session('danger'))

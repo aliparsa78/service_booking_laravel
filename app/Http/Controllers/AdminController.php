@@ -19,9 +19,27 @@ class AdminController extends Controller
         $user = Auth::user();
         if(Auth::check() && $user->role ==='admin')
             {
-                $books = Booking::where('status','pending')->get();
+                $books = Booking::where('status','pending')->orderBy('created_at','desc')->get();
+                $month_revenue=Booking::where('status','confirmed')->where('created_at','>=',Carbon::now()->subMonth())->sum('total_price');
+                $daily_income = Booking::where('status','confirmed')->whereDate('created_at', Carbon::today())->sum('total_price');
+                //Calculating Precentage of revenue 
+                $last_month=Booking::where('status','confirmed')->whereBetween('created_at',
+                [Carbon::now()->subMonth()->startOfMonth(),Carbon::now()->subMonth()->endOfMonth()])
+                ->sum('total_price');
+
+                $this_Month = Booking::where('status','confirmed')->whereBetween('created_at',
+                [Carbon::now()->startOfMonth(),Carbon::now()->endOfMonth()])
+                ->sum('total_price');
+                if($last_month==0)
+                {
+                    $percentage = $this_Month;
+                }else{
+                    $percentage = (($this_Month - $last_month) / $last_month) * 100;
                 
-                return view('Backend/index',compact('books'));
+                }
+                
+
+                return view('Backend/index',compact('books','month_revenue','daily_income','percentage'));
             }   
     }
     public function approve(Request $request, $id)
@@ -62,11 +80,9 @@ class AdminController extends Controller
 
     public function reservations(Request $request)
     {
-        $Month_orders = Booking::where('status','confirmed')->where('created_at','>=',Carbon::now()->subMonth())->get();
-        $Day_orders = Booking::where('status','confirmed')->whereDate('created_at',today())->get();
-        $monthTotal = BooKing::where('status','confirmed')->whereMonth('created_at',now()->month())->sum('total_price');
-        $dayTotal = BooKing::where('status','confirmed')->whereDate('created_at',today())->sum('total_price');
-        return view('Backend/Reservations/index',compact('Month_orders','Day_orders','monthTotal','dayTotal'));
+        $today = Booking::where('status','confirmed')->whereDate('updated_at',today())->get();
+        $dayTotal = BooKing::where('status','confirmed')->whereDate('updated_at',today())->sum('total_price');
+        return view('Backend/Reservations/index',compact('today','dayTotal'));
     }
 
     

@@ -10,6 +10,7 @@
   </head>
   <body>
         <!-- partial -->
+        @extends('Backend/layouts/app')
         @section('content')
     
         <!-- partial -->
@@ -20,7 +21,7 @@
 
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Tables / </a></li>
+                  <li class="breadcrumb-item"><a href="#">Tables  </a></li>
                   <x-breadcrumn-component />
                 </ol>
               </nav>
@@ -46,7 +47,7 @@
                         </thead>
                         <tbody>
                             @php $id=1; @endphp
-                        @foreach($Day_orders as $today_order)
+                        @foreach($today as $today_order)
                           <tr>
                               <td>{{$id++}}</td>
                               <td>{{$today_order->user->name}}</td>

@@ -59,7 +59,10 @@
                                  <input type="text" class="contactus" value="{{session('temp_book.check_in')}}"  name="check_in" readonly> 
                                @else
                                  <label for="">Check In <i class="text-danger">*</i></label>
-                                 <input type="date" class="contactus"   name="check_in" required >                              
+                                 <input type="date" class="contactus"   name="check_in" required > 
+                                 @error('check_in')
+                                    <p style="color:red">{{$message}}</p>
+                                 @enderror
                                  @endif
                             </div>
 
@@ -70,6 +73,9 @@
                               @else
                               <label for="">Check Out <i class="text-danger">*</i></label>
                                <input type="date" class="contactus"   name="check_out" required>
+                               @error('check_out')
+                                    <p style="color:red">{{$message}}</p>
+                                 @enderror
                               @endif 
                               </div>
                              
