@@ -22,12 +22,11 @@ class BookingFactory extends Factory
         return [
             'user_id'=> 1,
             'room_id'=> 5,
-            'check_in'=>'2025-12-24',
-            'check_out'=>'2025-12-24',
+            'check_in'=>'2026-1-26',
+            'check_out'=>'2026-2-1',
             'status'=>'pending',
-            'total_price'=> 343,
-            'created_at'=> '2025-11-24',
-            'updated_at'=>now(),
+            'total_price'=> 988,
+            'created_at'=> '2026-1-25',
         ];
     }
 }

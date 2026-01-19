@@ -28,8 +28,8 @@
                     <div class="row">
                       <div class="col-9">
                         <div class="d-flex align-items-center align-self-start text-white">
-                          <h3 class="mb-0">$12.34</h3>
-                          <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
+                          <h5 class="mb-0">{{$today_orders}}</h5>
+                          <p class="text-success ml-2 mb-0 font-weight-medium">{{number_format($order_percentage,1)}}%</p>
                         </div>
                       </div>
                       <div class="col-3">
@@ -38,7 +38,7 @@
                         </div>
                       </div>
                     </div>
-                    <h6 class="text-muted font-weight-normal">Potential growth</h6>
+                    <h6 class="text-muted font-weight-normal">Today's Orders</h6>
                   </div>
                 </div>
               </div>
@@ -48,14 +48,14 @@
                     <div class="row">
                       <div class="col-9">
                         <div class="d-flex align-items-center align-self-start text-white">
-                          <h3 class="mb-0">${{$month_revenue}}</h3>
+                          <h5 class="mb-0">${{$month_revenue}}</h5>
                           @if($percentage > 0)
                           <p class="text-success ml-2 mb-0 font-weight-medium"> 
-                            + {{number_format($percentage,2)}}%  
+                            + {{number_format($percentage,1)}}%  
                           </p>
                           @else
-                          <p class="text-success ml-2 mb-0 font-weight-medium"> 
-                           - {{number_format($percentage,2)}}%  
+                          <p class="text-danger ml-2 mb-0 font-weight-medium"> 
+                            {{number_format($percentage,1)}}%  
                           </p>
                           @endif
                         </div>
@@ -76,8 +76,12 @@
                     <div class="row">
                       <div class="col-9">
                         <div class="d-flex align-items-center align-self-start text-white">
-                          <h3 class="mb-0">${{$daily_income}}</h3>
-                          <p class="text-danger ml-2 mb-0 font-weight-medium">-2.4%</p>
+                          <h5 class="mb-0">${{$daily_income}}</h5>
+                          @if($today_percentage > 0)
+                          <p class="text-success ml-2 mb-0 font-weight-medium">+ {{number_format($today_percentage,1)}}%</p>
+                          @else
+                            <p class="text-success ml-2 mb-0 font-weight-medium">{{number_format($today_percentage,1)}}%</p>
+                          @endif
                         </div>
                       </div>
                       <div class="col-3">
@@ -96,7 +100,7 @@
                     <div class="row">
                       <div class="col-9">
                         <div class="d-flex align-items-center align-self-start text-white">
-                          <h3 class="mb-0">$31.53</h3>
+                          <h5 class="mb-0">$31.53</h5>
                           <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
                         </div>
                       </div>
