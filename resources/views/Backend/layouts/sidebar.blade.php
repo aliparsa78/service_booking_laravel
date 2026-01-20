@@ -1,6 +1,6 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-          <a href="dashboard" style="text-decoration: none; color: white"><h3>Hotel Reservation</h3></a>  
+          <a href="dashboard" style="text-decoration: none; color: white"><h4>Hotel Reservation</h4></a>  
         </div>
         <ul class="nav">
           <li class="nav-item profile">

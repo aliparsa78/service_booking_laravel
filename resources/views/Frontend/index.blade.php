@@ -1,8 +1,5 @@
    @extends('../Frontend/layouts/app')
    @section('content')
-      <!-- end header inner -->
-      <!-- end header -->
-      <!-- banner -->
       <section class="banner_main">
          <div id="myCarousel" class="carousel slide banner" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -32,35 +29,7 @@
             <span class="sr-only">Next</span>
             </a>
          </div>
-         <div class="booking_ocline">
-            <div class="container">
-               <div class="row">
-                  <div class="col-md-5">
-                     <div class="book_room">
-                        <h1>Book a Room Online</h1>
-                        <form class="book_now" action="book_now" method="post">
-                           @csrf
-                           <div class="row">
-                              <div class="col-md-12">
-                                 <span>Arrival</span>
-                                 <img class="date_cua" src="images/date.png">
-                                 <input type="date" class="online_book" placeholder="dd/mm/yyyy"  name="arrival">
-                              </div>
-                              <div class="col-md-12">
-                                 <span>Departure</span>
-                                 <img class="date_cua" src="images/date.png">
-                                 <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="departure">
-                              </div>
-                              <div class="col-md-12">
-                                 <button class="book_btn">Book Now</button>
-                              </div>
-                           </div>
-                        </form>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
+         
       </section>
       <!-- end banner -->
       <!-- about -->

@@ -36,17 +36,5 @@
                   </div>
                </div>
             </div>
-            <div class="copyright">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-md-10 offset-md-1">
-                        
-                        <p>
-                        © 2025 All Rights Reserved. Design by <a href="https://html.design/"> Ali Parsa</a>
-
-                     </div>
-                  </div>
-               </div>
-            </div>
          </div>
       </footer>

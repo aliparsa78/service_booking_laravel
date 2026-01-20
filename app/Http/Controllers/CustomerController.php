@@ -27,13 +27,6 @@ class CustomerController extends Controller
         return view('Frontend/Acount/index',compact('user','Bookings','count'));
     }
 
-    public function book_now(Request $request)
-    {
-        $data = $request->only(['arrival','departure']);
-        session(['temp_date'=>$data]);
-        $rooms = Room::get();
-        return view('Frontend/room',compact('rooms'));
-    }
     public function book(Request $request, $id)
     {   $room = Room::find($id);
         $arrival  = session('temp_date.arrival');
@@ -88,7 +81,7 @@ class CustomerController extends Controller
         $book->update();
         return redirect('/acount')->with('success','Booking Date updated successfuly ');
     }
-    public function delete_book($id)
+    public function cancel_booking($id)
     {
         if(Auth::check())
         {

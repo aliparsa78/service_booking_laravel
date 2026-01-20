@@ -34,7 +34,7 @@
                       </div>
                       <div class="col-3">
                         <div class="icon icon-box-success ">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
+                          <span class="mdi mdi-arrow-bottom-left icon-item"></span>
                         </div>
                       </div>
                     </div>
@@ -62,7 +62,7 @@
                       </div>
                       <div class="col-3">
                         <div class="icon icon-box-success">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
+                          <span class="mdi mdi-arrow-bottom-left icon-item"></span>
                         </div>
                       </div>
                     </div>
@@ -85,7 +85,7 @@
                         </div>
                       </div>
                       <div class="col-3">
-                        <div class="icon icon-box-danger">
+                        <div class="icon icon-box-success">
                           <span class="mdi mdi-arrow-bottom-left icon-item"></span>
                         </div>
                       </div>
@@ -105,7 +105,7 @@
                         </div>
                       </div>
                       <div class="col-3">
-                        <div class="icon icon-box-success ">
+                        <div class="icon icon-box-danger ">
                           <span class="mdi mdi-arrow-top-right icon-item"></span>
                         </div>
                       </div>
@@ -171,7 +171,7 @@
                                 <p class="text-success">Confirmed</p>
                               @else
                               <div class="badge badge-outline-danger">
-                                <form id="cancel_book-{{ $book->id }}" 
+                                <form id="reject_book-{{ $book->id }}" 
                                   action="reject/{{$book->id}}" 
                                   method="POST">
                                     @csrf
@@ -414,24 +414,24 @@
         }
       });
     }
-function confirmDelete(id) {
-    Swal.fire({
-        title: '<span style="color:black;">Are You Sure?</span>',
-        titleColor: '#d33',
-        text: "This action cannot be undone!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Yes, decline it!',
-        cancelButtonText: 'Cancel',
-        
-    }).then((result) => {
-        if (result.isConfirmed) {
-            document.getElementById('cancel_book-' + id).submit();
-        }
-    });
-}
+    function confirmDelete(id) {
+      Swal.fire({
+          title: '<span style="color:black;">Are You Sure?</span>',
+          titleColor: '#d33',
+          text: "This action cannot be undone!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#d33',
+          cancelButtonColor: '#3085d6',
+          confirmButtonText: 'Yes, decline it!',
+          cancelButtonText: 'Cancel',
+          
+      }).then((result) => {
+          if (result.isConfirmed) {
+              document.getElementById('reject_book-' + id).submit();
+          }
+      });
+    }
 </script>
   </body>
 </html>

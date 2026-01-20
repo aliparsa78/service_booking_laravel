@@ -12,6 +12,7 @@
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
+
       <!-- bootstrap css -->
      
    </head>
@@ -96,9 +97,11 @@
                             </td>
                             <td >
                                 @if($booking->status=='pending')
-                                <form action="delete_book/{{$booking->id}}" method="post">
+                                <form id="cancel-book-{{ $booking->id }}" 
+                                action="cancel_booking/{{$booking->id}}"
+                                 method="post" >
                                     @csrf
-                                    <button type="submit" class="btn btn-danger {{$booking->status!='pending' ? 'disabled' : ''}}" >Delete <p class="fa fa-trash"></p> </button>
+                                    <button type="button"  class="btn btn-danger {{$booking->status!='pending' ? 'disabled' : ''}}" onclick="confirmDelete({{ $booking->id }})" >Delete <p class="fa fa-trash"></p> </button>
                                 </form>
                                 @else
                                     <p>delete</p>
@@ -124,5 +127,29 @@
       <!-- end contact -->
       <!--  footer -->
      @endsection
+    
+
+
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+     <script>
+        
+    function confirmDelete(id) {
+      Swal.fire({
+          title: '<span style="color:black;">Are You Sure?</span>',
+          text: "This action cannot be undone!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#d33',
+          cancelButtonColor: '#3085d6',
+          confirmButtonText: 'Yes, decline it!',
+          cancelButtonText: 'Cancel',
+          
+      }).then((result) => {
+          if (result.isConfirmed) {
+            document.getElementById('cancel-book-' + id).submit();
+          }
+      });
+    }
+</script>
    </body>
 </html>

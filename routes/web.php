@@ -35,14 +35,14 @@ Route::view('/contact','Frontend/contact');
 Route::middleware(['auth','customer'])->group(function(){
     Route::get('/customer',[CustomerController::class,'index']);
     // Booking
-    Route::post('/book_now',[CustomerController::class,'book_now']);
     Route::get('/book/{id}',[CustomerController::class,'book']);
     Route::post('/submit_book',[CustomerController::class,'submit_book']);
     // My Account
     Route::get('acount',[CustomerController::class,'acount']);
     Route::get('edit_booking/{id}',[CustomerController::class,'edit_booking']);
     Route::post('update_book/{id}',[CustomerController::class,'update_book']);
-    Route::post('/delete_book/{id}',[CustomerController::class,'delete_book']);
+    // Cancel Booking
+    Route::post('/cancel_booking/{id}',[CustomerController::class,'cancel_booking']);
 });
 
 // Admin Logged in
