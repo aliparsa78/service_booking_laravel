@@ -42,7 +42,7 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{route('hotel.create')}}">Hotel</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{route('room.create')}}">Rooms</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('glry')}}">Gallery</a></li>
               </ul>
             </div>
           </li>

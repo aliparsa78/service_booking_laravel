@@ -63,7 +63,7 @@
                      </div>
                      <div class="bed_room">
                         <h3 >{{$room->type}}</h3>
-                        <table class="table">
+                        <table class="table ">
                            <thead>
                               <tr>
                                  <td>Number</td>

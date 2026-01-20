@@ -45,9 +45,10 @@
                   <div class="card-body">
                     <h4 class="card-title">Rooms Table</h4>
                     <div class="table-responsive">
-                      <table class="table table-striped">
+                      <table class="table table-striped table-dark">
                         <thead>
                           <tr>
+                            <th>Room Id</th>
                             <th>Hotel Name</th>
                             <th> Type </th>
                             <th> Price </th>
@@ -63,13 +64,14 @@
                             
                         @foreach($rooms as $room)
                           <tr>
+                            <td>{{$room->id}}</td>
                             <td>{{$room->hotel->name}}</td>
                             <td>{{$room->type}} </td>
                             <td>{{$room->price}}</td>
                             <td>{{$room->capacity}}</td>
                             <td id="description"> {{$room->description}} </td>
                             <td class="">
-                              <img src="{{asset('images/rooms/'.$room->image)}}" alt="image" />
+                              <img src="{{asset('images/rooms/'.$room->image)}}" style="width:200px; height: 200px;" alt="image" />
                             </td>
                             <td>{{$room->is_active}}</td>
                             <td>

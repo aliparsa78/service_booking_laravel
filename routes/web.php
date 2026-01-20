@@ -7,6 +7,7 @@ use App\Http\Controllers\HotelController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Route;
 
@@ -59,6 +60,9 @@ Route::middleware(['auth','admin'])->group(function(){
     Route::get('/month_reservation',[AdminController::class,'month_reservation']);
     // Rejected reservations
     Route::get('/rejected_reservation',[AdminController::class,'rejected_reservations']);
+
+    // Gallery Part
+    Route::resource('/glry',GalleryController::class);
 });
 
 
