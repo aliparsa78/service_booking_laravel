@@ -26,6 +26,10 @@ class CustomerController extends Controller
         $count = Booking::where('user_id',$user->id)->count();
         return view('Frontend/Acount/index',compact('user','Bookings','count'));
     }
+    public function ch_us_info(Request $request)
+    {
+        return view('Frontend/Acount/up-us-nfo');
+    }
 
     public function book(Request $request, $id)
     {   $room = Room::find($id);

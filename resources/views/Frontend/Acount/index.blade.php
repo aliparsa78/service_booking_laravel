@@ -115,13 +115,32 @@
 
                     
                 </table>
+                </div>
+                @if($count != 0)
+                <a href="" class="btn btn-info text-center">Check Out</a>
+                @else
+                    
+                @endif
+
             </div>
-            @if($count != 0)
-            <a href="" class="btn btn-info text-center">Check Out</a>
-            @else
-                
-            @endif
-        </div>
+            <br><hr> 
+            <div class="main">
+   
+                   <h2 class="fw-bold">Your Acount Information</h2> 
+                   <hr>
+                   <h5>Your Name: <span class="text-info fw-bold">{{Auth::user()->name}}</span></h5>
+                   <h5>Your Email: <span class="text-info fw-bold"> {{Auth::user()->email}} </span> </h5>
+                   <h5>Profile: 
+                        @if(Auth::user()->profile_photo == null)
+                        <p>No Photo yet</p>
+                        @else
+                        <p>Your Photo</p>
+                        @endif
+                    </h5>
+                    <hr>
+                    <a href="profile" class="btn btn-info">Chang Your Account Information</a>
+   
+               </div>
          </div>
       </div>
       <!-- end contact -->

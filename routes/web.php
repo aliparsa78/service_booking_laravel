@@ -9,6 +9,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\SubscribeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -29,12 +30,13 @@ Route::get('/dashboard',[UserController::class,'index'])->middleware(['auth', 'v
 // All visitors
 Route::get('/about',[HomeController::class,'about']);
 Route::get('/rooms',[HomeController::class,'rooms']);
-Route::view('/gallery','Frontend/gallery');
+Route::get('/front_glry',[HomeController::class,'front_gallery']);
 Route::view('/blog','Frontend/blog');
 Route::view('/contact','Frontend/contact');
 // Customer logged in
 Route::middleware(['auth','customer'])->group(function(){
     Route::get('/customer',[CustomerController::class,'index']);
+    Route::get('/change_user_info',[CustomerController::class,'ch_us_info']);
     // Booking
     Route::get('/book/{id}',[CustomerController::class,'book']);
     Route::post('/submit_book',[CustomerController::class,'submit_book']);
@@ -44,6 +46,8 @@ Route::middleware(['auth','customer'])->group(function(){
     Route::post('update_book/{id}',[CustomerController::class,'update_book']);
     // Cancel Booking
     Route::post('/cancel_booking/{id}',[CustomerController::class,'cancel_booking']);
+    // Subscribe
+    Route::post('subscribe',[SubscribeController::class,'index']);
 });
 
 // Admin Logged in

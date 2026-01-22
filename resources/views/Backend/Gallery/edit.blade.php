@@ -48,6 +48,7 @@
                            @endforeach
                         </select>
                       </div>
+
                       <div class="form-group">
                         <label for="exampleInputName1">Title</label>
                         <input type="text" name="title" class="form-control" id="exampleInputName1" value="{{$gallery->title}}">
@@ -58,6 +59,17 @@
                         <label>File upload</label>
                         <input type="file" name="image" class="form-control">
                         
+                      </div>
+
+                      <div class="form-group">
+                        <label class="text-white">
+                          <input type="radio" name="is_active" value="on" {{$gallery->is_active=='on' ? 'checked' : ''}} >
+                          On
+                        </label>
+                        <label for="" class="text-white">
+                          <input type="radio" name="is_active" value="off" class="checked ml-3" {{$gallery->is_active=='off' ? 'checked' : ''}} >
+                          Off
+                        </label>
                       </div>
                     
                       <button type="submit" class="btn btn-primary mr-2">Submit</button>

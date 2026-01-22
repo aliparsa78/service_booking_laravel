@@ -34,6 +34,8 @@ class GalleryController extends Controller
         $gallery = new Gallery();
         $gallery->room_id = $request->room_id;
         $gallery->title = $request->title;
+        $gallery->is_active = $request->is_active;
+
         if($request->hasFile('image'))
         {
             $image = $request->file('image');
@@ -42,7 +44,7 @@ class GalleryController extends Controller
             $gallery->image_path = $name;
         }
         $gallery->save();
-        return back();
+        return back()->with('success','Gallery information added successfuly ');
     }
 
     /**
@@ -71,6 +73,7 @@ class GalleryController extends Controller
         $gallery = Gallery::find($id);
         $gallery->room_id = $request->room_id;
         $gallery->title = $request->title;
+        $gallery->is_active = $request->is_active;
         if($request->hasFile('image'))
         {
             $image = $request->file('image');

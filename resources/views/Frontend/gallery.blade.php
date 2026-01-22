@@ -41,46 +41,15 @@
          <div class="container">
            
             <div class="row">
+               @foreach($galleries as $gallery)
                <div class="col-md-3 col-sm-6">
                   <div class="gallery_img">
-                     <figure><img src="images/gallery1.jpg" alt="#"/></figure>
+                     <a href="rooms">
+                     <figure><img src="{{asset('Gallery/'.$gallery->image_path)}}" alt="Gallery" title="{{$gallery->title}}" /></figure>
+                     </a>
                   </div>
                </div>
-               <div class="col-md-3 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/gallery2.jpg" alt="#"/></figure>
-                  </div>
-               </div>
-               <div class="col-md-3 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/gallery3.jpg" alt="#"/></figure>
-                  </div>
-               </div>
-               <div class="col-md-3 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/gallery4.jpg" alt="#"/></figure>
-                  </div>
-               </div>
-               <div class="col-md-3 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/gallery5.jpg" alt="#"/></figure>
-                  </div>
-               </div>
-               <div class="col-md-3 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/gallery6.jpg" alt="#"/></figure>
-                  </div>
-               </div>
-               <div class="col-md-3 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/gallery7.jpg" alt="#"/></figure>
-                  </div>
-               </div>
-               <div class="col-md-3 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/gallery8.jpg" alt="#"/></figure>
-                  </div>
-               </div>
+               @endforeach
             </div>
          </div>
       </div>

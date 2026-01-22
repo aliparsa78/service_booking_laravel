@@ -37,7 +37,7 @@
                                  <a class="nav-link {{request()->is('rooms*') ? 'active' : ''}}" href="rooms">rooms</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link  {{request()->is('gallery*') ? 'active' : ''}}" href="gallery">Gallery</a>
+                                 <a class="nav-link  {{request()->is('front_glry*') ? 'active' : ''}}" href="front_glry">Gallery</a>
                               </li>
                               <li class="nav-item">
                                  <a class="nav-link {{request()->is('blog*') ? 'active' : ''}}" href="blog">Blog</a>
@@ -46,9 +46,6 @@
                                  <a class="nav-link  {{request()->is('contact*') ? 'active' : ''}}" href="contact">Contact</a>
                               </li>
                               @auth
-                              <li class="nav-item">
-                                 <a class="nav-link {{request()->is('order*') ? 'active' : ''}}" href="order">Orders</a>
-                              </li>
                               <li class="nav-item">
                                  <a class="nav-link" href="acount">Acount</a>
                               </li>

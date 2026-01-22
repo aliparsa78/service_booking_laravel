@@ -72,7 +72,7 @@
     @if(session('success'))
       <script>
       Swal.fire({
-        title: '<span style="color:black;">Are You Sure?</span>',
+        title: '<span style="color:black;"> Success </span>',
         text:'{{session("success")}}',
         icon: 'success',
         color:'#000'

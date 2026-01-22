@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Hotel;
 use App\Models\Room;
+use App\Models\Gallery;
 
 class HomeController extends Controller
 {
@@ -17,5 +18,10 @@ class HomeController extends Controller
     {
         $rooms = Room::get();
         return view('Frontend/room',compact('rooms'));
+    }
+    public function front_gallery()
+    {
+        $galleries = Gallery::where('is_active','on')->get();
+        return view('Frontend/gallery',compact('galleries'));
     }
 }
