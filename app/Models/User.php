@@ -12,6 +12,16 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function profile()
+    {
+        return $this->morphOne(Profile::class,'profilable');
+    }
+
+    public function image()
+    {
+        return $this->morphOne(Image::class,'imagable');
+    }
+
     /**
      * The attributes that are mass assignable.
      *

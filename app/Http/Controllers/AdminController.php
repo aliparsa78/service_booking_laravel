@@ -40,12 +40,23 @@ class AdminController extends Controller
                 // calculate the percentage of day
                 $yesterday = Booking::where('status','confirmed')->whereBetween('updated_at',[Carbon::yesterday()->startOfDay(),Carbon::yesterday()->endOfDay()])->sum('total_price');
                 $today = Booking::where('status','confirmed')->whereBetween('updated_at',[Carbon::now()->startOfDay(),Carbon::now()->endOfDay()])->sum('total_price');
-                $today_percentage = (($today-$yesterday)/$yesterday)*100;
+                if($yesterday==0 )
+                {
+                    $today_percentage = $today; 
+                }else{
+                    $today_percentage = (($today-$yesterday)/$yesterday)*100;
+                }
                 // Today's orders amount
 
                 $today_orders = Booking::whereDate('updated_at',Carbon::today())->where('status','confirmed')->count();
                 $yesterday_orders = Booking::whereDate('updated_at',Carbon::yesterday())->where('status','confirmed')->count();
-                $order_percentage = (($today_orders - $yesterday_orders)/$yesterday_orders) * 100; 
+                if($yesterday_orders == 0)
+                {
+                    $order_percentage = $today_orders;            
+                }else{
+                        
+                        $order_percentage = (($today_orders - $yesterday_orders)/$yesterday_orders) * 100; 
+                }
                 return view('Backend/index',compact('books','month_revenue','daily_income'
                 ,'percentage','today_percentage','today_orders','order_percentage'));
             }   

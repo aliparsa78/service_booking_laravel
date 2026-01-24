@@ -48,6 +48,8 @@ Route::middleware(['auth','customer'])->group(function(){
     Route::post('/cancel_booking/{id}',[CustomerController::class,'cancel_booking']);
     // Subscribe
     Route::post('subscribe',[SubscribeController::class,'index']);
+    // Update Information
+    Route::post('/up-profile',[CustomerController::class,'up_profile']);
 });
 
 // Admin Logged in

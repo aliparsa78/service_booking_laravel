@@ -7,6 +7,7 @@ use App\Models\Room;
 use App\Models\Hotel;
 use App\Models\Booking;
 use App\Models\User;
+use App\Models\Profile;
 use Auth;
 use Carbon\Carbon;
 
@@ -26,9 +27,34 @@ class CustomerController extends Controller
         $count = Booking::where('user_id',$user->id)->count();
         return view('Frontend/Acount/index',compact('user','Bookings','count'));
     }
-    public function ch_us_info(Request $request)
+    public function up_profile(Request $request)
     {
-        return view('Frontend/Acount/up-us-nfo');
+        
+        $data = $request->validate(
+            [
+                'bio'=>'sometimes|string|max:300',
+                'location'=>'sometimes|string|max:30',
+                'image'=>'sometimes',
+            ]);
+            
+            $user = Auth::user();
+            if ($request->hasFile('image')) {
+                $image = $request->image;
+                $name = time().'.'.$image->getClientOriginalExtension();
+                $path = $image->storeAs('Users',$name,'public');
+                $user->image()->updateOrCreate(
+                [],
+                [
+                    'path'=> $path,
+                ]);
+                return back()->with('success','Profile Image Updated Successfuly ');
+            }else{
+                die();
+            }
+            $user->profile()->updateOrCreate(
+            [],
+            $data);
+            return back()->with('success','Bio`s information updated');
     }
 
     public function book(Request $request, $id)
