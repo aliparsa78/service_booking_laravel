@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Booking;
 use App\Models\Reject_Booking;
+use App\Models\Room;
 use Auth;
 use App\Notifications\RejectionNotification;
 
@@ -124,5 +125,27 @@ class AdminController extends Controller
     {
         $rejected = Reject_Booking::get();
         return view('Backend/Reservations/rejected_reservations',compact('rejected'));
+    }
+
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        $type = $request->category;
+        if($request->category == 'room')
+        {
+            $result = Room::whereHas('booking')->where('type','like',"%$search%")->get();
+        }
+        elseif($request->category == 'user')
+        {
+            $result = User::whereHas('booking')->where('name','like',"%$search%")->get();
+            
+        }
+        elseif($request->category == 'booking')
+        {
+            $result = Booking::where('status','like',"%$search%")->get();
+            
+        }
+        return view('Backend/Search/result',compact('result','search','type'));
     }
 }

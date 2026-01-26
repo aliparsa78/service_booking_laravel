@@ -69,6 +69,8 @@ Route::middleware(['auth','admin'])->group(function(){
 
     // Gallery Part
     Route::resource('/glry',GalleryController::class);
+    // Search
+    Route::post('/search',[AdminController::class,'search']);
 });
 
 

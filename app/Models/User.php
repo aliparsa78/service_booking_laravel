@@ -12,6 +12,10 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function booking()
+    {
+        return $this->hasMany(Booking::class);
+    }
     public function profile()
     {
         return $this->morphOne(Profile::class,'profilable');
