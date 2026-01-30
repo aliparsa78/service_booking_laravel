@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Hotel;
+use App\Http\Requests\HotelRequest;
 
 class HotelController extends Controller
 {
@@ -27,14 +28,9 @@ class HotelController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(HotelRequest $request)
     {
-        $request->validate([
-            'name'=>'required',
-            'address'=>'required',
-            'profile'=>'required|mimes:jpg,png|max:5048',
-            'description'=>'required'
-        ]);
+       
         $hotel = new Hotel();
         $hotel->name = $request->name;
         $hotel->address = $request->address;

@@ -17,6 +17,7 @@ class AdminController extends Controller
 {
     public function index(Request $request)
     {
+        
         $user = Auth::user();
         if(Auth::check() && $user->role ==='admin')
             {

@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Room;
 use App\Models\Gallery;
+use App\Http\Requests\GalleryRequest;
+use App\Services\GalleryService;
 
 class GalleryController extends Controller
 {
+    protected GalleryService $galleryService;
+
+    public function __construct(GalleryService $galleryService){
+        $this->galleryService = $galleryService;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -29,22 +36,12 @@ class GalleryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(GalleryRequest $request, GalleryService $galleryService)
     {
-        $gallery = new Gallery();
-        $gallery->room_id = $request->room_id;
-        $gallery->title = $request->title;
-        $gallery->is_active = $request->is_active;
 
-        if($request->hasFile('image'))
-        {
-            $image = $request->file('image');
-            $name = time().'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('Gallery'),$name);
-            $gallery->image_path = $name;
-        }
-        $gallery->save();
-        return back()->with('success','Gallery information added successfuly ');
+        $this->galleryService->store($request);
+
+        return redirect('glry')->with('success','Gallery information added successfuly ');
     }
 
     /**
@@ -70,18 +67,9 @@ class GalleryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $gallery = Gallery::find($id);
-        $gallery->room_id = $request->room_id;
-        $gallery->title = $request->title;
-        $gallery->is_active = $request->is_active;
-        if($request->hasFile('image'))
-        {
-            $image = $request->file('image');
-            $name = time().'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('Gallery'),$name);
-            $gallery->image_path = $name;
-        }
-        $gallery->update();
+
+        $this->galleryService->update($request,$id);
+        
         return redirect('/glry')->with('success','Information of Gallery updated successfuly');
     }
 

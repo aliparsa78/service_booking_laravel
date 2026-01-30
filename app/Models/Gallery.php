@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Gallery extends Model
 {
+    protected $fillable=[
+        'room_id','title','is_active','image_path'
+    ];
     use HasFactory;
 }
