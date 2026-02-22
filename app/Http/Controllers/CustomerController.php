@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\BookingRequest;
+use App\Services\BookingService;
 use App\Models\Room;
 use App\Models\Hotel;
 use App\Models\Booking;
@@ -13,6 +15,13 @@ use Carbon\Carbon;
 
 class CustomerController extends Controller
 {
+    protected BookingService $bookingService;
+    public function __construct(BookingService $bookingService)
+    {
+        $this->bookingService = $bookingService;
+    }
+
+
     public function index(Request $request)
     {
         $about = Hotel::get()->first();
@@ -73,28 +82,10 @@ class CustomerController extends Controller
         
         return view('Frontend/Book/index');
     }
-    public function submit_book(Request $request)
+    public function submit_book(BookingRequest $request, BookingService $bookingService)
     {
-        $request->validate([
-            'check_in'=>'required|date|after-or-equal:today',
-            'check_out'=>'required|date|after:check_in',
-
-        ]);
-
-        $checkIn = Carbon::parse($request->check_in);
-        $checkout = Carbon::parse($request->check_out);
-        $days = $checkIn->diffInDays($checkout);
-        $total_price = $days * $request->price;
-        $user_id = Auth::user()->id;
-        $book = new Booking();
-        $book->user_id = $user_id;
-        $book->room_id = $request->room_id;
-        $book->check_in = $request->check_in;
-        $book->check_out = $request->check_out;
-        $book->total_price = $total_price;
-        $book->save();
-        session()->forget('temp_book');
-        session()->forget('temp_date');
+        $this->bookingService->submit_book($request);
+        
         
         return redirect('acount')->with('success','Booking registered successfuly ');
     }

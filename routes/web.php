@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SubscribeController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -50,6 +51,8 @@ Route::middleware(['auth','customer'])->group(function(){
     Route::post('subscribe',[SubscribeController::class,'index']);
     // Update Information
     Route::post('/up-profile',[CustomerController::class,'up_profile']);
+    // Contact
+    Route::resource('message',ContactController::class);
 });
 
 // Admin Logged in
@@ -61,7 +64,6 @@ Route::middleware(['auth','admin'])->group(function(){
     Route::post('/reject/{id}',[AdminController::class,'rejected_book']);
     Route::get('/reservations',[AdminController::class,'reservations']);
     Route::post("/accept_reject",[AdminController::class,'accept_reject']);
-    // Reservation's date
     Route::get('/week_reservation',[AdminController::class,'week_reservation']);
     Route::get('/month_reservation',[AdminController::class,'month_reservation']);
     // Rejected reservations

@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Hotel;
 use App\Http\Requests\HotelRequest;
+use App\Services\HotelService;
 
 class HotelController extends Controller
 {
+    protected HotelService $hotelService;
+    public function __construct(HotelService $hotelService)
+    {
+        $this->hotelService = $hotelService;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -30,18 +37,7 @@ class HotelController extends Controller
      */
     public function store(HotelRequest $request)
     {
-       
-        $hotel = new Hotel();
-        $hotel->name = $request->name;
-        $hotel->address = $request->address;
-        $hotel->description = $request->description;
-        if($request->hasFile('profile'))
-        {
-            $profile = time().$request->profile->extension();
-            $request->profile->move(public_path('images/hotel'),$profile);
-            $hotel->profile = $profile;
-        }
-        $hotel->save();
+       $this->hotelService->store($request);
         return redirect('/hotel')->with('success','Hotel information added successfuly');
     }
 
@@ -67,17 +63,7 @@ class HotelController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $hotel = Hotel::find($id);
-        $hotel->name = $request->name;
-        $hotel->address = $request->address;
-        $hotel->description = $request->description;
-        if($request->hasFile('profile'))
-        {
-            $profile = time().$request->profile->extension();
-            $request->profile->move(public_path('images/hotel'),$profile);
-            $hotel->profile = $profile;
-        }
-        $hotel->update();
+        $this->hotelService->update($request,$id);
         return redirect('/hotel')->with('danger','Hotel information updated successfuly.');
         
     }

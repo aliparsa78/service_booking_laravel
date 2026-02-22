@@ -76,15 +76,9 @@ class GalleryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Gallery $gallery, string $id)
+    public function destroy(Request $request, string $id)
     {
-        $gallery = Gallery::find($id);
-        
-        if(file_exists(public_path($gallery->impage_path))){
-            $file = public_path('Gallery/'.$gallery->image_path);
-            unlink($file);
-        }
-        $gallery->delete();
+        $this->galleryService->destroy($request,$id);
         return back()->with('danger','Gallery information has been deleted');
     }
 }

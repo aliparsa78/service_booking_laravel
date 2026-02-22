@@ -13,8 +13,10 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $rooms = Room::get();
-        return view('Backend/Room/index',compact('rooms'));
+        $acitve_rooms = Room::Active();
+        $notActive = Room::NotActive();
+        
+        return view('Backend/Room/index',compact('acitve_rooms','notActive'));
     }
 
     /**

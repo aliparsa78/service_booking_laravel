@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Booking;
 use App\Models\Reject_Booking;
 use App\Models\Room;
+use App\Models\Contact;
 use Auth;
 use App\Notifications\RejectionNotification;
 
@@ -21,16 +22,17 @@ class AdminController extends Controller
         $user = Auth::user();
         if(Auth::check() && $user->role ==='admin')
             {
+                
                 $books = Booking::where('status','pending')->orderBy('updated_at','desc')->get();
-                $month_revenue=Booking::where('status','confirmed')->whereBetween('updated_at',[Carbon::now()->startOfMonth(),Carbon::now()->endOfMonth()])
+                $month_revenue=Booking::Confirmed()->whereBetween('updated_at',[Carbon::now()->startOfMonth(),Carbon::now()->endOfMonth()])
                 ->sum('total_price');
-                $daily_income = Booking::where('status','confirmed')->whereDate('updated_at', Carbon::today())->sum('total_price');
+                $daily_income = Booking::Confirmed()->where('updated_at', Carbon::today())->sum('total_price');
                 //Calculating Precentage of month revenue 
-                $last_month=Booking::where('status','confirmed')->whereBetween('updated_at',
+                $last_month=Booking::Confirmed()->whereBetween('updated_at',
                 [Carbon::now()->subMonth()->startOfMonth(),Carbon::now()->subMonth()->endOfMonth()])
                 ->sum('total_price');
 
-                $this_Month = Booking::where('status','confirmed')->whereBetween('updated_at',
+                $this_Month = Booking::Confirmed()->whereBetween('updated_at',
                 [Carbon::now()->startOfMonth(),Carbon::now()->endOfMonth()])
                 ->sum('total_price');
                 if($last_month==0)
@@ -40,8 +42,8 @@ class AdminController extends Controller
                     $percentage = (($this_Month - $last_month) / $last_month)* 100 ;
                 }
                 // calculate the percentage of day
-                $yesterday = Booking::where('status','confirmed')->whereBetween('updated_at',[Carbon::yesterday()->startOfDay(),Carbon::yesterday()->endOfDay()])->sum('total_price');
-                $today = Booking::where('status','confirmed')->whereBetween('updated_at',[Carbon::now()->startOfDay(),Carbon::now()->endOfDay()])->sum('total_price');
+                $yesterday = Booking::Confirmed()->whereBetween('updated_at',[Carbon::yesterday()->startOfDay(),Carbon::yesterday()->endOfDay()])->sum('total_price');
+                $today = Booking::Confirmed()->whereBetween('updated_at',[Carbon::now()->startOfDay(),Carbon::now()->endOfDay()])->sum('total_price');
                 if($yesterday==0 )
                 {
                     $today_percentage = $today; 
@@ -50,8 +52,8 @@ class AdminController extends Controller
                 }
                 // Today's orders amount
 
-                $today_orders = Booking::whereDate('updated_at',Carbon::today())->where('status','confirmed')->count();
-                $yesterday_orders = Booking::whereDate('updated_at',Carbon::yesterday())->where('status','confirmed')->count();
+                $today_orders = Booking::whereDate('updated_at',Carbon::today())->Confirmed()->count();
+                $yesterday_orders = Booking::whereDate('updated_at',Carbon::yesterday())->Confirmed()->count();
                 if($yesterday_orders == 0)
                 {
                     $order_percentage = $today_orders;            
@@ -59,8 +61,11 @@ class AdminController extends Controller
                         
                         $order_percentage = (($today_orders - $yesterday_orders)/$yesterday_orders) * 100; 
                 }
+
+                // Contact->messages
+                $messages = Contact::latest()->get();
                 return view('Backend/index',compact('books','month_revenue','daily_income'
-                ,'percentage','today_percentage','today_orders','order_percentage'));
+                ,'percentage','today_percentage','today_orders','order_percentage','messages'));
             }   
     }
     public function approve(Request $request, $id)
@@ -100,28 +105,29 @@ class AdminController extends Controller
     }
 
     public function reservations(Request $request)
-    {
-        $today = Booking::where('status','confirmed')->whereDate('updated_at',today())->get();
-        $dayTotal = BooKing::where('status','confirmed')->whereDate('updated_at',today())->sum('total_price');
+    {   
+        
+        $today = Booking::Confirmed()->whereBetween('updated_at',Carbon::today());
+        $dayTotal = Booking::Confirmed()->where('updated_at',Carbon::today())->sum('total_price');
+    
         return view('Backend/Reservations/index',compact('today','dayTotal'));
     }
-
-    
 
     public function  week_reservation(Request $request)
     {
         $week_reservations = Booking::where('updated_at','>=',Carbon::now()->subWeek())->get();
-        $week_total = Booking::where('status','confirmed')->where('updated_at','>=',Carbon::now()->subWeek())->sum('total_price');
+        $week_total = Booking::Confirmed()->where('updated_at','>=',Carbon::now()->subWeek())->sum('total_price');
         return view('Backend/Reservations/week',compact('week_reservations','week_total'));
 
     }
     public function month_reservation()
     {
         $month_reservations = Booking::where('updated_at','>=',Carbon::now()->subMonth())->get();
-        $month_total = Booking::where('status','confirmed')->where('updated_at','>=',Carbon::now()->subMonth())->sum('total_price');
+        $month_total = Booking::Confirmed()->where('updated_at','>=',Carbon::now()->subMonth())->sum('total_price');
         return view('Backend/Reservations/month',compact('month_reservations','month_total'));
-    }
 
+    }
+    
     public function rejected_reservations(Request $request)
     {
         $rejected = Reject_Booking::get();
@@ -149,4 +155,6 @@ class AdminController extends Controller
         }
         return view('Backend/Search/result',compact('result','search','type'));
     }
+
+    
 }

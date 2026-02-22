@@ -37,8 +37,16 @@ class GalleryService{
                 }
                 $gallery->update();
         
-
+    }
+    public function destroy(Request $request, $id)
+    {
+        $gallery = Gallery::find($id);
         
+        if(file_exists(public_path($gallery->impage_path))){
+            $file = public_path('Gallery/'.$gallery->image_path);
+            unlink($file);
+        }
+        $gallery->delete();
     }
 
 

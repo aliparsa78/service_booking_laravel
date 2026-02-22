@@ -43,25 +43,25 @@
                         @endforeach                        
                     </select><br>
                       <div class="form-group">
-                        <label for="exampleInputName1">Type</label>
+                        <label for="exampleInputName1 " class="text-white">Type</label>
                         <input type="text" name="type" class="form-control" id="exampleInputName1" placeholder="The room type..">
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputName1">Price</label>
+                        <label for="exampleInputName1" class="text-white">Price</label>
                         <input type="text" name="price" class="form-control" id="exampleInputName1" placeholder="The room price..">
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputName1">Capacity</label>
+                        <label for="exampleInputName1" class="text-white">Capacity</label>
                         <input type="text" name="capacity" class="form-control" id="exampleInputName1" placeholder="The room capacity..">
                       </div>
                       
                       <div class="form-group">
-                        <label>Image</label>
+                        <label class="text-white">Image</label>
                         <input type="file" name="image" class="form-control">                     
                       </div>
                      
                       <div class="form-group">
-                        <label for="exampleTextarea1">Description</label>
+                        <label for="exampleTextarea1" class="text-white">Description</label>
                         <textarea class="form-control" name="description" id="exampleTextarea1" rows="4"></textarea>
                       </div>
 

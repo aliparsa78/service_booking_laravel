@@ -30,7 +30,7 @@
                               <p class="text-danger text-center">{{$error}} </p>
                            @endforeach
                         @endif
-                        <input class="enter" placeholder="Enter your email" type="text" name="email">
+                        <input class="text-dark" placeholder="Enter your email" type="text" name="email"> <br>
                         <button class="sub_btn" type="submit">subscribe</button>
                      </form>
                      <ul class="social_icon">

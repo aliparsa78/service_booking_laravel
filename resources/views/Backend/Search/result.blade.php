@@ -10,18 +10,15 @@
   </head>
   <body>
         <!-- partial -->
-        @extends('Backend/layouts/app')
-        @section('content')
-    
-                      @if($type==='user')
-                         @include('Backend/Search.users')
-                      @elseif($type==='room')
-                         @include('Backend/Search/room')
-                      @elseif($type==='booking')
-                         @include('Backend/Search.booking')
-
-                      @endif
-                     
+  @extends('Backend/layouts/app')
+  @section('content')
+    @if($type==='user')
+       @include('Backend/Search.users')
+    @elseif($type==='room')
+       @include('Backend/Search/room')
+    @elseif($type==='booking')
+       @include('Backend/Search.booking')
+    @endif              
   @endsection
     <!-- container-scroller -->
    

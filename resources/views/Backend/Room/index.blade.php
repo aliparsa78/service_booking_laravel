@@ -10,7 +10,7 @@
   </head>
   <style>
     #description{
-      max-width:150px;
+      max-width:250px;
       word-wrap:break-word;
       white-space: normal;
     }
@@ -43,7 +43,7 @@
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Rooms Table</h4>
+                    <h4 class="card-title">Active Rooms Table</h4>
                     <div class="table-responsive">
                       <table class="table table-striped table-dark">
                         <thead>
@@ -62,7 +62,7 @@
                         </thead>
                         <tbody>
                             
-                        @foreach($rooms as $room)
+                        @foreach($acitve_rooms as $room)
                           <tr>
                             <td>{{$room->id}}</td>
                             <td>{{$room->hotel->name}}</td>
@@ -71,7 +71,60 @@
                             <td>{{$room->capacity}}</td>
                             <td id="description"> {{$room->description}} </td>
                             <td class="">
-                              <img src="{{asset('images/rooms/'.$room->image)}}" style="width:200px; height: 200px;" alt="image" />
+                              <img src="{{asset('images/rooms/'.$room->image)}}" style="width:150px; height: 150px;" alt="image" />
+                            </td>
+                            <td>{{$room->is_active}}</td>
+                            <td>
+                                <a href="{{route('room.edit',$room->id)}}">Edite</a>
+                            </td>
+                                <td>
+                                  <form action="{{route('room.destroy',$room->id)}}" method="post">
+                                     @csrf
+                                     @method('DELETE')
+                                    <input type="submit" class="delete" value="Delete">
+                                  </form>
+                                </td>
+                          </tr>
+                        @endforeach
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">InActive Rooms Table</h4>
+                    <div class="table-responsive">
+                      <table class="table table-striped table-dark">
+                        <thead>
+                          <tr>
+                            <th>Room Id</th>
+                            <th>Hotel Name</th>
+                            <th> Type </th>
+                            <th> Price </th>
+                            <th> Capacity </th>
+                            <th> Description </th>
+                            <th> Image </th>
+                            <th> Is_Active </th>
+                            <th> Edite </th>
+                            <th> Delete </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            
+                        @foreach($notActive as $room)
+                          <tr>
+                            <td>{{$room->id}}</td>
+                            <td>{{$room->hotel->name}}</td>
+                            <td>{{$room->type}} </td>
+                            <td>{{$room->price}}</td>
+                            <td>{{$room->capacity}}</td>
+                            <td id="description"> {{$room->description}} </td>
+                            <td class="">
+                              <img src="{{asset('images/rooms/'.$room->image)}}" style="width:150px; height: 150px;" alt="image" />
                             </td>
                             <td>{{$room->is_active}}</td>
                             <td>

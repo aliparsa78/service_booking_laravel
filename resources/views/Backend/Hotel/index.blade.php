@@ -45,7 +45,7 @@
                   <div class="card-body">
                     <h4 class="card-title">Hotel Table</h4>
                     <div class="table-responsive">
-                      <table class="table table-striped">
+                      <table class="table table-striped table-dark">
                         <thead>
                           <tr>
                             <th> Name </th>
